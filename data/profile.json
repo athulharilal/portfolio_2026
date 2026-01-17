@@ -1,0 +1,89 @@
+{
+  "basics": {
+    "name": "Athul",
+    "label": "AI Solutions Engineer",
+    "image": "https://avatars.githubusercontent.com/u/athulharilal?v=4",
+    "email": "athulharilal8081@gmail.com",
+    "phone": "+91-9074346816",
+    "url": "https://athulharilal.github.io/react-portfolio/",
+    "summary": "Code, curiosity, and real problems.",
+    "location": {
+      "city": "Bengaluru",
+      "region": "Karnataka",
+      "countryCode": "IN"
+    },
+    "profiles": [
+      {
+        "network": "LinkedIn",
+        "username": "athulharilal",
+        "url": "https://www.linkedin.com/in/athulharilal/"
+      },
+      {
+        "network": "GitHub",
+        "username": "athulharilal",
+        "url": "https://github.com/athulharilal"
+      }
+    ]
+  },
+  "work": [
+    {
+      "name": "AdMax Local",
+      "position": "AI Solutions Engineer",
+      "url": "https://admaxlocal.com",
+      "startDate": "2023-12-21",
+      "endDate": null,
+      "summary": "Architecting AI-driven solutions and enhancing web apps with Linux, Python, and MySQL. Leveraging skills for automation and operational efficiency.",
+      "highlights": [
+        "Developing automated workflows using N8n and AI APIs.",
+        "Implementing Groq and Open API integrations for scalable solutions.",
+        "Python for automation and operational tasks.",
+        "MySQL database operations."
+      ]
+    }
+  ],
+  "education": [
+    {
+      "institution": "School Of Technology And Applied Science",
+      "area": "Computer Applications",
+      "studyType": "Master's Degree (MCA)",
+      "startDate": "2020-01-01",
+      "endDate": "2022-01-01",
+      "score": ""
+    }
+  ],
+  "skills": [
+    {
+      "name": "Operations & Logic",
+      "level": "Expert",
+      "keywords": ["Linux", "Shell Scripting", "Python", "MySQL", "Automation"]
+    },
+    {
+      "name": "AI & Engineering",
+      "level": "Expert",
+      "keywords": ["N8n", "Open API", "Groq API", "Vibe coding using Antigravity"]
+    },
+    {
+      "name": "Web Development",
+      "level": "Advanced",
+      "keywords": ["MERN Stack", "React", "Node.js", "JavaScript", "HTML/CSS"]
+    }
+  ],
+  "projects": [
+    {
+      "name": "React Portfolio",
+      "description": "My previous personal portfolio built with React.",
+      "highlights": ["Responsive Design", "React Components"],
+      "keywords": ["React", "CSS"],
+      "url": "https://athulharilal.github.io/react-portfolio/",
+      "image": "https://placehold.co/600x400/1a1a1a/ffffff?text=React+Portfolio"
+    },
+    {
+      "name": "GitHub Projects",
+      "description": "Various projects available on my GitHub.",
+      "highlights": ["30+ Repositories", "Continuous Learning"],
+      "keywords": ["Open Source", "Full Stack"],
+      "url": "https://github.com/athulharilal?tab=repositories",
+      "image": "https://placehold.co/600x400/1a1a1a/ffffff?text=GitHub+Repos"
+    }
+  ]
+}

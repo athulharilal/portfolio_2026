@@ -1,0 +1,28 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section container fade-in">
+    <div class="card-grid">
+        {% for project in profile.projects %}
+        <div class="card project-card">
+            {% if project.image %}
+            <div class="project-image" style="background-image: url('{{ project.image }}');"></div>
+            {% endif %}
+            <div class="project-content">
+                <p>{{ project.description }}</p>
+                
+                <div class="tags">
+                    {% for keyword in project.keywords %}
+                    <span class="tag">{{ keyword }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="project-links" style="margin-top: 1.5rem;">
+                    <a href="{{ project.url }}" target="_blank" class="btn" style="font-size: 0.9rem; padding: 8px 16px;">View Project</a>
+                </div>
+            </div>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

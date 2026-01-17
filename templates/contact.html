@@ -1,0 +1,98 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section container fade-in" style="min-height: 80vh; display: flex; flex-direction: column; justify-content: center; padding-top: 140px;"> 
+    <div class="card" style="max-width: 600px; margin: 0 auto; width: 100%;">
+        <p style="text-align: center; margin-bottom: 2rem;">
+            Let's connect and create something amazing together!
+        </p>
+        
+        <div style="text-align: center;">
+            <button id="openContactModal" class="btn">Say Hello</button>
+        </div>
+
+        <div class="contact-info" style="margin-top: 3rem; text-align: center;">
+            <p>Or find me on:</p>
+            <div class="social-links" style="margin-top: 1rem; display: flex; justify-content: center; gap: 20px;">
+                {% for profile in profile.basics.profiles %}
+                    <a href="{{ profile.url }}" target="_blank" class="btn-outline">{{ profile.network }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- Contact Modal -->
+<div id="contactModal" class="modal">
+    <div class="modal-content card">
+        <span class="close-modal">&times;</span>
+        <h2>Leave a Message</h2>
+        <form id="contactForm">
+            <div class="form-group">
+                <input type="text" id="senderName" placeholder="Your Name" required>
+            </div>
+            <div class="form-group">
+                <textarea id="senderMessage" rows="5" placeholder="Your Message" required></textarea>
+            </div>
+            <div class="actions" style="justify-content: center; gap: 10px; display: flex;">
+                <button type="submit" class="btn">Send via App</button>
+                <button type="button" id="sendGmail" class="btn btn-outline">Send via Gmail</button>
+            </div>
+        </form>
+    </div>
+</div>
+
+<script>
+    const modal = document.getElementById("contactModal");
+    const btn = document.getElementById("openContactModal");
+    const span = document.getElementsByClassName("close-modal")[0];
+    const form = document.getElementById("contactForm");
+    const gmailBtn = document.getElementById("sendGmail");
+    const userEmail = "{{ profile.basics.email }}";
+
+    btn.onclick = function() {
+        modal.classList.add('show');
+    }
+
+    span.onclick = function() {
+        modal.classList.remove('show');
+    }
+
+    window.onclick = function(event) {
+        if (event.target == modal) {
+            modal.classList.remove('show');
+        }
+    }
+
+    function getMessageData() {
+        const name = document.getElementById("senderName").value;
+        const message = document.getElementById("senderMessage").value;
+        if(!name || !message) {
+            alert("Please fill in both fields.");
+            return null;
+        }
+        return { name, message };
+    }
+
+    form.onsubmit = function(e) {
+        e.preventDefault();
+        const data = getMessageData();
+        if(!data) return;
+        
+        const body = `Hi Athul,\n\n${data.message}\n\nBest,\n${data.name}`;
+        window.location.href = `mailto:${userEmail}?subject=Message from Portfolio - ${data.name}&body=${encodeURIComponent(body)}`;
+        modal.classList.remove('show');
+        alert("Opening your default email app to send...");
+    }
+
+    gmailBtn.onclick = function() {
+        const data = getMessageData();
+        if(!data) return;
+
+        const body = `Hi Athul,\n\n${data.message}\n\nBest,\n${data.name}`;
+        const gmailUrl = `https://mail.google.com/mail/?view=cm&fs=1&to=${userEmail}&su=${encodeURIComponent('Message from Portfolio - ' + data.name)}&body=${encodeURIComponent(body)}`;
+        window.open(gmailUrl, '_blank');
+        modal.classList.remove('show');
+    }
+</script>
+{% endblock %}

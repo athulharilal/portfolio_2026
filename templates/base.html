@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ profile.basics.name }} - Portfolio</title>
+    <meta name="description" content="{{ profile.basics.summary }}">
+    
+    <!-- Favicon -->
+    <link rel="icon" type="image/svg+xml" href="{{ url_for('static', filename='favicon.svg') }}">
+
+    <!-- Fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;700&display=swap" rel="stylesheet">
+    
+    <!-- CSS -->
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/main.css') }}">
+</head>
+<body>
+
+    <nav class="navbar">
+        <a href="{{ url_for('home') }}" class="logo-link">
+            <div class="logo">
+                <span class="symbol">./</span>{{ profile.basics.name.split(' ')[0] }}<span class="blink">_</span>
+            </div>
+        </a>
+        <div class="nav-links">
+            <a href="{{ url_for('home') }}" class="{{ 'active' if page == 'home' else '' }}">Home</a>
+            <a href="{{ url_for('experience') }}" class="{{ 'active' if page == 'experience' else '' }}">Experience</a>
+            <a href="{{ url_for('projects') }}" class="{{ 'active' if page == 'projects' else '' }}">Projects</a>
+            <a href="{{ url_for('blog') }}" class="{{ 'active' if page == 'blog' else '' }}">Blog</a>
+            <a href="{{ url_for('contact') }}" class="{{ 'active' if page == 'contact' else '' }}">Contact</a>
+        </div>
+    </nav>
+
+    <main>
+        {% block content %}{% endblock %}
+    </main>
+
+    <footer style="padding-bottom: 2rem;">
+        <div class="container">
+            <p>&copy; 2026 {{ profile.basics.name }}. All rights reserved.</p>
+            <div class="social-links" style="margin-top: 1rem;">
+                {% for profile in profile.basics.profiles %}
+                    <a href="{{ profile.url }}" target="_blank" style="margin: 0 10px;">{{ profile.network }}</a>
+                {% endfor %}
+            </div>
+        </div>
+    </footer>
+
+    <div class="cursor"></div>
+    <div class="cursor-follower"></div>
+
+    <script>
+        const cursor = document.querySelector('.cursor');
+        const follower = document.querySelector('.cursor-follower');
+        const links = document.querySelectorAll('a, button, .card');
+
+        document.addEventListener('mousemove', (e) => {
+            cursor.style.left = e.clientX + 'px';
+            cursor.style.top = e.clientY + 'px';
+            
+            setTimeout(() => {
+                follower.style.left = e.clientX + 'px';
+                follower.style.top = e.clientY + 'px';
+            }, 50);
+        });
+
+        links.forEach(link => {
+            link.addEventListener('mouseenter', () => {
+                cursor.classList.add('active');
+                follower.classList.add('active');
+            });
+            link.addEventListener('mouseleave', () => {
+                cursor.classList.remove('active');
+                follower.classList.remove('active');
+            });
+        });
+    </script>
+</body>
+</html>

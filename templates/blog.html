@@ -1,0 +1,35 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="section container fade-in">
+    <div class="card-grid">
+        {% for article in articles %}
+        <div class="card project-card">
+            {% if article.cover_image %}
+            <div class="project-image" style="background-image: url('{{ article.cover_image }}');"></div>
+            {% endif %}
+            <div class="project-content">
+                <h3>{{ article.title }}</h3>
+                <p>{{ article.description }}</p>
+                
+                <div class="tags">
+                    {% for tag in article.tag_list %}
+                    <span class="tag">#{{ tag }}</span>
+                    {% endfor %}
+                </div>
+                
+                <div class="project-links" style="margin-top: 1.5rem; display: flex; justify-content: space-between; align-items: center;">
+                    <a href="{{ article.url }}" target="_blank" class="btn" style="font-size: 0.9rem; padding: 8px 16px;">Read Article</a>
+                    <span style="font-size: 0.8rem; color: var(--text-secondary);">{{ article.readable_publish_date }}</span>
+                </div>
+            </div>
+        </div>
+        {% else %}
+        <div class="card">
+            <p>No articles found or unable to fetch from Dev.to at the moment.</p>
+            <a href="https://dev.to/athulharilal" target="_blank" class="btn">Visit my Dev.to Profile</a>
+        </div>
+        {% endfor %}
+    </div>
+</section>
+{% endblock %}

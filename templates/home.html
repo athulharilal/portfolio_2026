@@ -1,0 +1,33 @@
+{% extends "base.html" %}
+
+{% block content %}
+<section class="hero">
+    <div class="container hero-content fade-in">
+        <h1>Hey... <span class="glitch" data-text="{{ profile.basics.name }} here">{{ profile.basics.name }} here</span></h1>
+        <p style="margin-top: 2rem;">{{ profile.basics.summary }}</p>
+        <div class="actions">
+            <a href="{{ url_for('projects') }}" class="btn">View My Work</a>
+            <a href="{{ url_for('contact') }}" class="btn btn-outline">Contact Me</a>
+        </div>
+    </div>
+</section>
+
+<section class="section container">
+    <div class="card-grid" style="grid-template-columns: 1fr;">
+        <div class="card">
+            <p style="font-size: 1.1rem; color: var(--text-primary);">
+                I am currently based in {{ profile.basics.location.city }}, {{ profile.basics.location.countryCode }}.
+            </p>
+            
+            <h3 style="margin-top: 2rem;">Skills</h3>
+            <div class="tags">
+                {% for skill in profile.skills %}
+                    {% for keyword in skill.keywords %}
+                        <span class="tag">{{ keyword }}</span>
+                    {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+    </div>
+</section>
+{% endblock %}
